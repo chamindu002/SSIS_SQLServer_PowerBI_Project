@@ -1,0 +1,977 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/6/2024 8:05:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="THARUSHA"
+  DTS:CreatorName="THARUSHA\Tharusha"
+  DTS:DTSID="{AAF4C198-A970-42F3-89FF-8080DF321EAA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FactSales"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{F15ADAB9-123F-4096-9B73-77ABFD3A0FF5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{29168024-75D3-4C82-908B-390786E2FB19}"
+      DTS:ObjectName="localhost\SQLEXPRESS.AdventureWorksDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{29168024-75D3-4C82-908B-390786E2FB19}localhost\SQLEXPRESS.AdventureWorksDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{82737659-C143-473A-9B8E-C903DD6F19ED}"
+      DTS:ObjectName="localhost\SQLEXPRESS.AdventureWorksStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{82737659-C143-473A-9B8E-C903DD6F19ED}localhost\SQLEXPRESS.AdventureWorksStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Staging to DW FactSales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A203EDB0-5921-4E5B-B1D5-C435E28588C0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging to DW FactSales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Staging to DW FactSales\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging to DW FactSales\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderDetailKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderDetailKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDetailKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderStatusKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderStatusKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderStatusKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderStatusKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOnlineOrderFlag]"
+                      cachedDataType="bool"
+                      cachedName="SalesOnlineOrderFlag"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOnlineOrderFlag]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOnlineOrderFlag]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderCustomerKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderCustomerKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderCustomerKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderCustomerKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesPersonKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesPersonKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesPersonKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TerritoryKey]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BillToAddressKey]"
+                      cachedDataType="i4"
+                      cachedName="BillToAddressKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillToAddressKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[BillToAddressKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderDateKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDateKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderDueDateKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderDueDateKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDueDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDueDateKey]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderQty]"
+                      cachedDataType="i4"
+                      cachedName="OrderQty"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQty]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitPriceDiscount]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPriceDiscount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineTotal]"
+                      cachedDataType="numeric"
+                      cachedName="LineTotal"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineTotal]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderSubTotal]"
+                      cachedDataType="numeric"
+                      cachedName="SalesOrderSubTotal"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderSubTotal]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderSubTotal]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderTaxAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesOrderTaxAmount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderTaxAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTaxAmount]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderFreightAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesOrderFreightAmount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderFreightAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderFreightAmount]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderTotalDueAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesOrderTotalDueAmount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderTotalDueAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTotalDueAmount]" />
+                    <inputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderModifiedDateKey]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SalesOrderModifiedDateKey"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderModifiedDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderModifiedDateKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailKey]"
+                      dataType="i4"
+                      name="SalesOrderDetailKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderKey]"
+                      dataType="i4"
+                      name="SalesOrderKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderStatusKey]"
+                      dataType="i4"
+                      name="SalesOrderStatusKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOnlineOrderFlag]"
+                      dataType="bool"
+                      name="SalesOnlineOrderFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderCustomerKey]"
+                      dataType="i4"
+                      name="SalesOrderCustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonKey]"
+                      dataType="i4"
+                      name="SalesPersonKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryKey]"
+                      dataType="i4"
+                      name="TerritoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillToAddressKey]"
+                      dataType="i4"
+                      name="BillToAddressKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDateKey]"
+                      dataType="i4"
+                      name="SalesOrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDueDateKey]"
+                      dataType="i4"
+                      name="SalesOrderDueDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
+                      dataType="i4"
+                      name="OrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
+                      dataType="numeric"
+                      name="UnitPriceDiscount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
+                      dataType="numeric"
+                      name="LineTotal"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderSubTotal]"
+                      dataType="numeric"
+                      name="SalesOrderSubTotal"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderTaxAmount]"
+                      dataType="numeric"
+                      name="SalesOrderTaxAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderFreightAmount]"
+                      dataType="numeric"
+                      name="SalesOrderFreightAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderTotalDueAmount]"
+                      dataType="numeric"
+                      name="SalesOrderTotalDueAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderModifiedDateKey]"
+                      dataType="dbTimeStamp"
+                      name="SalesOrderModifiedDateKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging to DW FactSales\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging to DW FactSales\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Staging_FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging to DW FactSales\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost\SQLEXPRESS.AdventureWorksStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDetailKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDetailKey]"
+                      name="SalesOrderDetailKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderKey]"
+                      name="SalesOrderKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderStatusKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderStatusKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderStatusKey]"
+                      name="SalesOrderStatusKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOnlineOrderFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOnlineOrderFlag]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOnlineOrderFlag]"
+                      name="SalesOnlineOrderFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderCustomerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderCustomerKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderCustomerKey]"
+                      name="SalesOrderCustomerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesPersonKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesPersonKey]"
+                      name="SalesPersonKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TerritoryKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryKey]"
+                      name="TerritoryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[BillToAddressKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BillToAddressKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[BillToAddressKey]"
+                      name="BillToAddressKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDateKey]"
+                      name="SalesOrderDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDueDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDueDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderDueDateKey]"
+                      name="SalesOrderDueDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderQty]"
+                      name="OrderQty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineTotal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineTotal]"
+                      name="LineTotal"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderSubTotal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderSubTotal]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderSubTotal]"
+                      name="SalesOrderSubTotal"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTaxAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderTaxAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTaxAmount]"
+                      name="SalesOrderTaxAmount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderFreightAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderFreightAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderFreightAmount]"
+                      name="SalesOrderFreightAmount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTotalDueAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderTotalDueAmount]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderTotalDueAmount]"
+                      name="SalesOrderTotalDueAmount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderModifiedDateKey]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderModifiedDateKey]"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesOrderModifiedDateKey]"
+                      name="SalesOrderModifiedDateKey"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailKey]"
+                      dataType="i4"
+                      name="SalesOrderDetailKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderKey]"
+                      dataType="i4"
+                      name="SalesOrderKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderStatusKey]"
+                      dataType="i4"
+                      name="SalesOrderStatusKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOnlineOrderFlag]"
+                      dataType="bool"
+                      name="SalesOnlineOrderFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderCustomerKey]"
+                      dataType="i4"
+                      name="SalesOrderCustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonKey]"
+                      dataType="i4"
+                      name="SalesPersonKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TerritoryKey]"
+                      dataType="i4"
+                      name="TerritoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BillToAddressKey]"
+                      dataType="i4"
+                      name="BillToAddressKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDateKey]"
+                      dataType="i4"
+                      name="SalesOrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDueDateKey]"
+                      dataType="i4"
+                      name="SalesOrderDueDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
+                      dataType="i4"
+                      name="OrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
+                      dataType="numeric"
+                      name="UnitPriceDiscount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
+                      dataType="numeric"
+                      name="LineTotal"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderSubTotal]"
+                      dataType="numeric"
+                      name="SalesOrderSubTotal"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderTaxAmount]"
+                      dataType="numeric"
+                      name="SalesOrderTaxAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderFreightAmount]"
+                      dataType="numeric"
+                      name="SalesOrderFreightAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderTotalDueAmount]"
+                      dataType="numeric"
+                      name="SalesOrderTotalDueAmount"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderModifiedDateKey]"
+                      dataType="dbTimeStamp"
+                      name="SalesOrderModifiedDateKey" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailKey]"
+                      name="SalesOrderDetailKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderKey]"
+                      name="SalesOrderKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductKey]"
+                      name="ProductKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderStatusKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderStatusKey]"
+                      name="SalesOrderStatusKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOnlineOrderFlag]"
+                      dataType="bool"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOnlineOrderFlag]"
+                      name="SalesOnlineOrderFlag" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderCustomerKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderCustomerKey]"
+                      name="SalesOrderCustomerKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesPersonKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesPersonKey]"
+                      name="SalesPersonKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TerritoryKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TerritoryKey]"
+                      name="TerritoryKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BillToAddressKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BillToAddressKey]"
+                      name="BillToAddressKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDateKey]"
+                      name="SalesOrderDateKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDueDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderDueDateKey]"
+                      name="SalesOrderDueDateKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
+                      name="OrderQty" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
+                      name="LineTotal"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderSubTotal]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderSubTotal]"
+                      name="SalesOrderSubTotal"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderTaxAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderTaxAmount]"
+                      name="SalesOrderTaxAmount"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderFreightAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderFreightAmount]"
+                      name="SalesOrderFreightAmount"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderTotalDueAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderTotalDueAmount]"
+                      name="SalesOrderTotalDueAmount"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderModifiedDateKey]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SalesOrderModifiedDateKey]"
+                      name="SalesOrderModifiedDateKey" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Staging to DW FactSales.Paths[OLE DB Source Output]"
+              endId="Package\Staging to DW FactSales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Staging to DW FactSales\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Staging to DW FactSales"
+          TopLeft="390.5,117.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Staging to DW FactSales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Staging to DW FactSales\OLE DB Source"
+          TopLeft="101.5,113.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Staging to DW FactSales\OLE DB Destination"
+          TopLeft="383.5,110.5" />
+        <EdgeLayout
+          Id="Package\Staging to DW FactSales.Paths[OLE DB Source Output]"
+          TopLeft="251.5,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132,0"
+              Start="0,0"
+              End="124.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="124.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging to DW FactSales\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging to DW FactSales\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "StagingtoDatawarehoues", "StagingtoDatawarehoues\StagingtoDatawarehoues.dtproj", "{04F06533-E6C2-4DDA-9C69-73D83F84492A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04F06533-E6C2-4DDA-9C69-73D83F84492A}.Development|Default.ActiveCfg = Development
+		{04F06533-E6C2-4DDA-9C69-73D83F84492A}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57A82015-3F9F-413C-96AA-18263BC27128}
+	EndGlobalSection
+EndGlobal
